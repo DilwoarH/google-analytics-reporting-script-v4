@@ -65,6 +65,7 @@ function getResults(query) {
   // Add filters and segments to optional arguements if provided
   if(query[2]) optArgs['filters'] = query[2];
   if(query[3]) optArgs['segment'] = [{ "segmentId": query[3] }];
+  if(query[4]) optArgs['useResourceQuotas'] = query[4] == true;
   
   // Set dimension value depending on weekly or monthly report setting
   switch(FREQ) {
@@ -95,7 +96,8 @@ function getResults(query) {
         "dimensions": dimensions,
         "filtersExpression": optArgs['filters'],
         "segments": optArgs['segment']
-      }]
+      }],
+      "useResourceQuotas": optArgs['useResourceQuotas']
   });
   
   return(results);
