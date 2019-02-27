@@ -82,6 +82,12 @@ function getResults(query) {
     
   var dimensions = [{ "name": optArgs['dimensions'] }];
   
+  if (optArgs['segment']) {
+    dimensions.push({
+      "name": "ga:segment"
+    });
+  }
+  
   // Gets results from the API
   var results = AnalyticsReporting.Reports.batchGet({
     "reportRequests":[
